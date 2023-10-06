@@ -1,4 +1,5 @@
 ﻿using AspSolid.Models.ViewModels;
+using AspSolid.Service;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AspSolid.Controllers
@@ -10,6 +11,7 @@ namespace AspSolid.Controllers
             return View();
         }
 
+        [HttpPost]
         public IActionResult Add(BeerViewModel beerViewModel)
         {
             if (!ModelState.IsValid)
@@ -17,10 +19,9 @@ namespace AspSolid.Controllers
                 return View(beerViewModel);
             }
 
-            //Guardado en DB
-
-            //Guardado en log
-
+            BeerService beerService = new BeerService();
+            beerService.Create(beerViewModel); //The add method only creates a beer.
+            
             return Ok();
         }
     }

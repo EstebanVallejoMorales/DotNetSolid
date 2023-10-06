@@ -7,9 +7,11 @@ namespace AspSolid.Service
     {
         public void Create(BeerViewModel beerViewModel)
         {
-            BeerDb beerDb = new BeerDb();
+            BeerDb beerDb = new BeerDb(); 
             var log = new Utils.Log();
-            Console.WriteLine();
+
+            beerDb.Save(beerViewModel); //BeerDB only save a BeerViewModel in DB
+            log.Save($"The beer: {beerViewModel.GetInfo()}"); //Log only write a string content in a a file.
         }
     }
 }
